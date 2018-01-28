@@ -158,6 +158,19 @@ public class AStar
         solveAStar();
     }
 
+    /**
+     * Implementation for use in a different class.
+     * 
+     * @param n The dimensions of the maze
+     * @see Maze
+     */
+    public AStar(Maze maze, int n)
+    {
+        this.maze = maze;
+        this.n = n + 1;
+        solveAStar();
+    }
+
     private void solveAStar()
     {
         nodesExpanded = 0;
@@ -218,7 +231,7 @@ public class AStar
                 {
                     openNodes.add(neighbor);
                     if(!(neighbor.position.equals(start)) && !(neighbor.position.equals(end)))
-                        neighbor.position.draw(StdDraw.GRAY);
+                        neighbor.position.draw(StdDraw.YELLOW);
                 }
 
                 int tenativeG = current.getG() + 1;
@@ -240,7 +253,7 @@ public class AStar
         {
             if(!(current.position.equals(start)) && !(current.position.equals(end)))
             {
-                current.position.draw(StdDraw.BLUE);
+                current.position.draw(StdDraw.MAGENTA);
             }
             current = path.get(current);
         }

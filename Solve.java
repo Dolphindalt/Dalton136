@@ -54,6 +54,7 @@ public class Solve
 		maze.draw();
 		solveStack();
 		solveQueue();
+		new AStar(maze, n);
 	}
 	
 	/**
