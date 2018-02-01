@@ -1,0 +1,22 @@
+1) Comment: tricky bits of code
+            all methods
+            all instance variables
+            header with all the good stuff
+
+2) Tour of N nodes, only "new" N Node objects.
+
+3) Linked list must be circular because:
+    assignments says so
+    harder if you don't
+
+4) Special case empty tour -> expected and necessary
+   Special case anything else -> not necessary, probably wrong
+
+5) Test with special cases: 0 node tour, 1 node tour
+
+6) In case of tie in heuristic, first position wins
+
+7) Heuristics should NOT recalculate whole tour
+   when testing each candidate insertion position
+
+8) Circular linked lists love do-while loops
