@@ -1,19 +1,36 @@
+/**
+ * The linked list for storing many different kinds of data.
+ */ 
 public class LinkedList<T>
 {
 	private int size;
 	private LinkedNode<T> head, tail;
 	
+	/**
+	 * Create an empty linked list.
+	 */ 
 	public LinkedList()
 	{
 		size = 0;
 		head = null;
 	}
 	
+	/**
+	 * Simply returns the size of the linked list.
+	 *
+	 * @return The size of the linked list
+	 */ 
 	public int getSize()
 	{
 		return size;
 	}
 	
+	/**
+	 * Get a linked node at an index. Index should be less than the size of the linked list.
+	 *
+	 * @param index An int value representing the position of the linkednode you wish to return
+	 * @return the linkednode at the index specified
+	 */ 
 	public LinkedNode<T> get(int index)
 	{
 		if(index >= size)
@@ -26,6 +43,11 @@ public class LinkedList<T>
 		return current;
 	}
 	
+	/**
+	 * Removes the linked node, at the index specified, from the list.
+	 *
+	 * @param index The index of the node to remove; should be less than the size of the linked list
+	 */ 
 	public void remove(int index)
 	{
 		if(index >= size)
@@ -52,6 +74,11 @@ public class LinkedList<T>
 		size--;
 	}
 	
+	/**
+	 * The same as an add() function in the java implementation of linked list. Adds a linkednode to the end of the linked list.
+	 *
+	 * @param thing The generic data type to package into a linkednode and add to the list
+	 */ 
 	public void pushBack(T thing)
 	{
 		LinkedNode<T> current = head;
@@ -72,6 +99,12 @@ public class LinkedList<T>
 		size++;
 	}
 	
+	/**
+	 * Insert a node behind the node at that index.
+	 *
+	 * @param index The index to insert the node behind
+	 * @param thing Generic type to package as a linkednode and insert into the linked list
+	 */ 
 	public void insertAt(int index, T thing)
 	{
 		if(index > size)
@@ -95,6 +128,12 @@ public class LinkedList<T>
 		tail = current;
 	}
 	
+	/**
+	 * The instructions mentioned a lot of insert after, so I wrote this.
+	 *
+	 * @param nodeAfter The linkednode present in the linked list to insert the thing after.
+	 * @param thing The thing to insert into the linked list packaged as a linkednode.
+	 */ 
 	public void insertAfter(LinkedNode<T> nodeAfter, T thing)
 	{
 		LinkedNode<T> current = head;
@@ -116,6 +155,9 @@ public class LinkedList<T>
 		tail = current;
 	}
 	
+	/**
+	 * Clear and empty the entire linked list.
+	 */ 
 	public void clear()
 	{
 		head = null;
@@ -123,11 +165,21 @@ public class LinkedList<T>
 		size = 0;
 	}
 	
+	/**
+	 * Returns the head of the linked list, which points to the second linkednode.
+	 *
+	 * @return The linkednode head of the linked list
+	 */ 
 	public LinkedNode<T> getListHead()
 	{
 		return head;
 	}
 	
+	/**
+	 * Returns the tail of the linked list, which points to the head.
+	 *
+	 * @return The linkednode tail of the linked list
+	 */ 
 	public LinkedNode<T> getListTail()
 	{
 		return tail;

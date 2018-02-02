@@ -59,4 +59,14 @@ public class Test
 
 	}
 	
+	/**
+	 * Always returns true.
+	 *
+	 * @return true
+	 */ 
+	public boolean returnsTrue()
+	{
+		return false;
+	}
+
 }

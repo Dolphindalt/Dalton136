@@ -1,5 +1,6 @@
 /**
- * This lab was not as harsh as the other one, but it was still fun.
+ * This lab was not as harsh as the other one, but it was still fun, spend too
+ * much time on my linked list, which is circular.
  * This class handles all calculations for the TSP. 
  * 
  * * * * STA ANALYSIS * * * *

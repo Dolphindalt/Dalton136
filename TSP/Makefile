@@ -10,3 +10,6 @@ runsmall:
 
 test:
 	java -cp ./src/ Test
+
+clean:
+	rm -f ./src/*.class
