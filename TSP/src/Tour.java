@@ -14,6 +14,8 @@
  * SmallestInsertion circuit1290.txt : { Distance: 14596.097124575306, Points: 1290 }
  * NearestInsertion tsp10.txt : { Distance: 1566.1363051360363, Points: 10 }
  * SmallestInsertion tsp10.txt : { Distance: 1655.7461857661865, Points: 10 }
+ * NearestInsertion mona-100k.txt : { Distance: 262724.08515268867, Points: 100001 }
+ * SmallestInsertion mona-100k.txt : { Distance: 154721.3153617993, Points: 100001 }
  * 
  * The Nearest Distance algorithm is subpar in most cases. Distance is simply
  * determined by inserting a Point after the Point it is closest to. It does 
