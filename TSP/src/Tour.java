@@ -32,7 +32,7 @@
  * 
  * As the first point (middle) links to point two (left), which then links to point three
  * (right). This example is only linear and can be much worse in random cases. such as in
- * the files tested above. The bheavior described above explains why there are giant
+ * the files tested above. The behavior described above explains why there are giant
  * lines jumping across many points and possibly more optimal solutions in the
  * drawing rendered by the test files.
  * 
