@@ -3,7 +3,7 @@
  * much time on my linked list, which is circular.
  * This class handles all calculations for the TSP. 
  * 
- * * * * STA ANALYSIS * * * *
+ * * * * BEGIN ANALYSIS * * * *
  * NearestInsertion tsp1000.txt : { Distance: 27868.710634854797, Points: 1000 }
  * SmallestInsertion tsp1000.txt : { Distance: 17265.628155352584, Points: 1000 }
  * NearestInsertion tsp100.txt : { Distance: 7389.929676351667, Points: 100 }
@@ -15,24 +15,48 @@
  * NearestInsertion tsp10.txt : { Distance: 1566.1363051360363, Points: 10 }
  * SmallestInsertion tsp10.txt : { Distance: 1655.7461857661865, Points: 10 }
  * 
- * The Nearest Distance algorithm is subpar in most cases. Distance simply
- * The Nearest by inserting a Point after the Point it is closest to. It does 
- * not take into account the distance of the point next to the point it is
- * inserting to. The Smallest Insertion alogrithm takes into account
+ * The Nearest Distance algorithm is subpar in most cases. Distance is simply
+ * determined by inserting a Point after the Point it is closest to. It does 
+ * not take into account the distance of the point to the right of the point it is
+ * inserting to. A point could be inserting next to a point because of its short
+ * distance, like so linearly:
+ * 
+ * 		        * - - - - - - - - - - - - - - *
+ * 
+ * But then another point could be closest to the point on the left and insert
+ * like so, creating a huge amount of extra distance:
+ * 
+ * 	* -	- - - - * - - - - - - - - - - - - - - *
+ * 
+ * As the first point (middle) links to point two (left), which then links to point three
+ * (right). This example is only linear and can be much worse in random cases. such as in
+ * the files tested above. The bheavior described above explains why there are giant
+ * lines jumping across many points and possibly more optimal solutions in the
+ * drawing rendered by the test files.
+ * 
+ * The Smallest Insertion alogrithm takes into account
  * both points and is able to add a point between two points where the
  * change in distance is the smallest. This may not be true with the Nearest
  * Distance, where the distance from one point is evaluated, rather than
- * two.
+ * two. The result is a more logical looking path, where the distance is
+ * also more optimal. The Smallest Insertion does take longer to compute though.
  * 
- * Despite this fact, when tsp10.txt was ran, the Smallest Insert was able to
+ * Despite these facts, when tsp10.txt was ran, the Smallest Insert was able to
  * out do the Nearest Insert. It seems Nearest Insert has a hard time inserting
  * points when they are in a mostly circular pattern with no strange deviations.
- * This could be a hit for finding a better solution to this problem, but in 
+ * This could be a hint for finding a better solution to this problem, but in 
  * most cases, it still seems SmallestInsertion works best in most random cases.
- * * * * END ANALYSIS * * * *
+ * 
+ * The reason Smallest Insert was able to compute a smaller distance in tsp10 could
+ * be that because it only inserts to the node closest to itself, and all of the nodes
+ * are ordered in this fashion, as a circle, the result was smaller. Another way of saying
+ * this: The points in tsp10 are placed in such a fashion that the optimal solution is
+ * in the order of nearest distance to each point. Nearest Insertion always compares two
+ * points and change in distance, so it fails to take this very specific case into account.
+ * * * * ENDOF ANALYSIS * * * *
  * 
  * @author Dalton Caron
- * @version 2/1/2018
+ * @version 2/3/2018
  * @see Point
  */
 public class Tour
