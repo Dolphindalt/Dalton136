@@ -3,10 +3,10 @@ compile:
 	javac $(wildcard src/*.java)
 
 runnear:
-	java -cp ./src/ NearestInsertion tsp10.txt
+	java -cp ./src/ NearestInsertion mona-100k.txt
 
 runsmall:
-	java -cp ./src/ SmallestInsertion tsp10.txt
+	java -cp ./src/ SmallestInsertion mona-100k.txt
 
 test:
 	java -cp ./src/ Test
