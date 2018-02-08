@@ -1,0 +1,19 @@
+stars.jpg
+dont_panic_40.png 0.5 0.5 0.035 100
+6
+asteroid_small.png 0.1 0.1 0.018 -0.002 -0.003
+asteroid_medium.png 0.2 0.2 0.030 0.002 -0.003
+aliens-alien-warrior-sixth-scale-hot-toys-silo-902693.png 0.3 0.3 0.065 -0.002 0.003
+asteroid_small.png 0.4 0.4 0.018 -0.001 -0.004
+11-pluto-icon.png 0.6 0.6 0.030 0.002 -0.003
+asteroid_large.png 0.7 0.7 0.065 -0.0035 0.0025
+
+# Hitchhikers Guide to the Galaxy: Avoid a bunch of objects
+#  <background image>
+#  <player image> <player x-position> <player y-position> <player radius> <player speed factor>
+#  <number enemies>
+#  <enemy0 image> <enemy0 x-position> <enemy0 y-position> <enemy0 x-velocity> <enemy0 y-velocity>
+#  <enemy1 image> <enemy1 x-position> <enemy1 y-position> <enemy1 x-velocity> <enemy1 y-velocity>
+#  ...
+
+

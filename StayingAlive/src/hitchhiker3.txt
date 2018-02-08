@@ -1,0 +1,33 @@
+stars.jpg
+dont_panic_40.png 0.5 0.5 0.035 50
+18
+asteroid_small.png 0.1 0.1 0.018 -0.002 -0.003
+asteroid_medium.png 0.2 0.2 0.030 0.002 -0.003
+asteroid_large.png 0.21 0.21 0.065 -0.002 0.003
+asteroid_small.png 0.4 0.4 0.018 -0.001 -0.004
+asteroid_medium.png 0.66 0.66 0.030 0.002 -0.003
+asteroid_large.png 0.7 0.7 0.065 -0.0035 0.0025
+asteroid_small.png 0.1 0.3 0.018 -0.001 -0.003
+asteroid_medium.png 0.25 0.2 0.030 0.002 -0.002
+asteroid_large.png 0.3 0.3 0.065 -0.0027 0.0043
+asteroid_small.png 0.35 0.7 0.018 -0.002 -0.004
+asteroid_medium.png 0.2 0.75 0.030 0.004 -0.003
+asteroid_large.png 0.1 0.76 0.065 -0.0065 0.0015
+
+asteroid_large.png 0.75 0.75 0.065 -0.0045 0.0035
+asteroid_small.png 0.15 0.35 0.018 -0.002 -0.004
+asteroid_medium.png 0.35 0.19 0.030 0.003 -0.003
+asteroid_large.png 0.21 0.39 0.065 -0.0037 0.0063
+asteroid_small.png 0.11 0.79 0.018 -0.003 -0.005
+asteroid_medium.png 0.27 0.85 0.030 0.005 -0.004
+asteroid_large.png 0.05 0.96 0.065 -0.0075 0.0035
+
+# Hitchhikers Guide to the Galaxy: level 2, even more asteroids and faster too, player is faster though
+#  <background image>
+#  <player image> <player x-position> <player y-position> <player radius> <player speed factor>
+#  <number enemies>
+#  <enemy0 image> <enemy0 x-position> <enemy0 y-position> <enemy0 x-velocity> <enemy0 y-velocity>
+#  <enemy1 image> <enemy1 x-position> <enemy1 y-position> <enemy1 x-velocity> <enemy1 y-velocity>
+#  ...
+
+

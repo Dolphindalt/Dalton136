@@ -1,0 +1,17 @@
+arcade.png
+pacman.png 0.5 0.5 0.026 100
+4
+blinky.png 0.1 0.1 0.026 -0.004 -0.005
+pinky.png 0.2 0.2 0.026 0.004 -0.008
+inky.png 0.3 0.3 0.026 -0.004 0.006
+clyde.png 0.4 0.4 0.026 -0.003 -0.006
+
+# Pac-Man fever, it's driving me crazy
+#  <background image>
+#  <player image> <player x-position> <player y-position> <player radius> <player speed factor>
+#  <number enemies>
+#  <enemy0 image> <enemy0 x-position> <enemy0 y-position> <enemy0 x-velocity> <enemy0 y-velocity>
+#  <enemy1 image> <enemy1 x-position> <enemy1 y-position> <enemy1 x-velocity> <enemy1 y-velocity>
+#  ...
+
+
