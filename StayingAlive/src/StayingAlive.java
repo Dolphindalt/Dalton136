@@ -2,12 +2,33 @@ import java.util.Scanner;
 import java.io.*;
 
 /**
+ * The main class for this StayingAlive game. I could
+ * have seperated some of my parsing in the constructor
+ * into multiple methods, but this is a freshman CS
+ * course and this lab is not too fun. I do not know why
+ * but I just really do not like drawing with StdDraw. I
+ * mean I am okay with using it, but using it just bothers
+ * me a little bit. I feel like the library is doing all the
+ * fun stuff for me, kind of like the Java language in general.
+ * Enough of my ranting, this project is below, but it could
+ * be better. It meets all of the rubric grades though. :P
+ * This lab was OKAY; personally liked the others more.
+ * The software engineering one was frustrating but fun. 
+ * Also I always write an essay in the main header, it is
+ * important for the grader to understand what I was thinking
+ * when I wrote this stuff.
  * 
- * @author
- *
+ * @author Dalton Caron
+ * @version 2/11/2018
  */
 public class StayingAlive
 {
+
+    /**
+     * Reads command line arguments and creates an instance of this class.
+     * 
+     * @param args The string array of command arguments. We use 0 as a filename read in.
+     */
     public static void main(String[] args)
     {
         if(args.length < 1)
@@ -19,11 +40,17 @@ public class StayingAlive
         new StayingAlive(args[0]);
     }
 
-    final String background;
-    Player player;
-    Enemy[] enimies;
-    int score = 0;
+    private final String background;
+    private Player player;
+    private Enemy[] enimies;
+    private int score = 0;
 
+    /**
+     * Giant ass constructor that reads and parses data from
+     * the input file while calling the main game loop.
+     * 
+     * @param fileName The string name of the file we are going to read
+     */
     public StayingAlive(String fileName)
     {
       Scanner sc = null;
@@ -97,6 +124,11 @@ public class StayingAlive
         }
         
         String[] emData = sc.nextLine().split(" ");
+        if(emData[0].isEmpty()) 
+        {
+          i--;
+          continue; // skip empty lines
+        }
         if(emData.length < 5)
         {
           System.err.println("Enemy " + i + " is missing data!");
