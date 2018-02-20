@@ -57,9 +57,10 @@ public class Art
 	 * the trees look more natural.
 	 */
 	private void tree(int iteration, final double[] position, final double length, 
-		final double contraction, final double theta, final double thetaChange)
+		final double compression, final double theta, final double thetaChange)
 	{
-		if(iteration == 0) return;
+		if(iteration-- == 0) 
+			return;
 
 		double[] newPosition =
 		{
@@ -69,8 +70,10 @@ public class Art
 
 		StdDraw.line(position[0], position[1], newPosition[0], newPosition[1]);
 
-		tree(iteration-1, newPosition, (Math.random() + 0.5) * (length*contraction), contraction, theta + thetaChange, Math.toRadians(Math.random() * (40 - 16) + 16));
-		tree(iteration-1, newPosition, (Math.random() + 0.5) * (length*contraction), contraction, theta - thetaChange, Math.toRadians(Math.random() * (40 - 16) + 16));
+		double newLength = compression * length;
+
+		tree(iteration, newPosition, (Math.random() + 0.5) * newLength, compression, theta + thetaChange, Math.toRadians(Math.random() * (40 - 16) + 16));
+		tree(iteration, newPosition, (Math.random() + 0.5) * newLength, compression, theta - thetaChange, Math.toRadians(Math.random() * (40 - 16) + 16));
 
 		StdDraw.show(3);
 	}
