@@ -1,0 +1,144 @@
+Name Dalton Caron_
+
+1.	Log on to katie.
+
+2.	(10 points) Enter these commands at the UNIX prompt, and try to interpret the output. Ask questions and don't be afraid to experiment (as a normal user you cannot do much harm). Write down your interpretation of what happened after you execute each command in this document. When you are done, save this and submit it to Moodle - this is what you’ll turn in for grading. Hint One: if you start a command that you don’t want to continue executing, for example, changing your password again, <Ctrl>d will usually stop the command. Hint Two: the command “man” is for manual. If you don’t understand what a command is doing, you can type, for example, man ls, and you will get the manual documentation for that command.
+	echo hello world
+	Prints hello world on a new line and creates another new line for the next terminal command.
+	passwd
+	Changing password for dcaron.\n(current) UNIX password: I hit enter because I did not want to change my password, so I hit enter and I got a passwd: Authentication token manipulation error\npasswd: password unchanged\n
+	date
+	Wed Mar 21 14:05:55 MDT 2018
+	hostname
+	katie
+	arch
+	x86_64 architecture 
+	uname -a 
+	Prints out system information. -a is short for --all.
+	dmesg | more (you may need to press q to quit)
+	Print the kernel ring buffer. The kernel keeps its logs in a ring buffer.
+	uptime
+	How long the scomputer has been online. Other information about connected users and average load times.
+	who am i
+	Nothing appeared. I tried man who am i and it brought up the who command.
+	who
+	Shows who is logged on.
+	id
+	Prints real and effective user ids.
+	last
+	The listing of user last logged on.
+	finger
+	Displays information about the system's users.
+	w 
+	Shows who is logged on and what they are doing.
+	top  (you may need to press q to quit)
+	Top is a very fancy graphical inferface for showing what is running on this computer. Htop is better.
+	echo $SHELL 
+	Bash shell location where we execute the bash from. $SHELL is a variable.
+	echo {con,pre}{sent,fer}{s,ed} 
+	This seems like a triple for loop that matches all of these possible combinations together and then prints them out. A REGEX?
+	man "automatic door" 
+	No manual entry for automatic door. The quotes allowed for the space to be registered as one word rather than a command and an argument.
+	man ls  (you may need to press q to quit)
+	Tells us information about the ls command.
+	man who  (you may need to press q to quit)
+	Tells us information about the who command. I used this to answer the who command question a while ago.
+	who can tell me why i got divorced
+	Extra operand 'me' must mean that who can tell is a command? Does not output anything, but some command is found. 
+	lost 
+	command not found , there is no lost command.
+	clear 
+	Clears the screen.
+	cal 2000 
+	Displays a calender for the year 2000. I had to use | more to see the whole thing.
+	cal 9 1752 (do you notice anything unusual?)
+	The ninth month is September... It is just one month on the calender. I do not see anything strange. Leap year that year? No. All the dates are wrong?!
+	bc -l (type quit  or press Ctrl-d to quit)
+	Bc is an arbitrary precision calculator language. It wants us to feed it calculator input.
+	echo 5+4 | bc -l 
+	The output is nine because we echo 5+4 to bc -l which adds them together, so the output is nine. echo 5+4 is just 5+4.
+	yes please (you may need to press Ctrl-c to quit)
+	It outputs the given string until the program is killed.
+	time sleep 5 
+	We slept for 5 seconds. The user and sys sleep for a shorter period of time than the real user. Very slightly, a few milliseconds.
+	history 
+	All the commands I typed are displayed in my face.
+
+3.	(7 points) Try the following command sequence and write down what happened after each one:
+	cd
+	dcaron@katie:~$ Nothing happened.
+	pwd
+	/home/student/dcaron
+	ls -al
+	I got a detailed view of my files and permissions, but hidden files also show.
+	cd .
+	dcaron@katie:~$ I navigated to where I already am.
+	pwd     (where did that get you?)
+	My home directory. After navigating into another directory, it displayes my current working directory.
+	cd ..
+	I moved back one directory.
+	pwd
+	/home/students/
+	ls -al
+	I can see all of the students files and permissions, also hidden files.
+	cd ..
+	/home/
+	pwd
+	/home
+	ls -al
+	I see classes, faculty, lost+found, projects, students, temp, and the current directory, directory behind, and file permissions and ownership.
+	cd ..
+	/
+	pwd     (what happens now)
+	/
+	cd /etc
+	We are in /etc now.
+	ls -al | more
+	There is a lot of stuff here. Many cfg files. lvm and php stuff that I have used. There are even symbolic links.
+	cat passwd
+	The passwd file was printed. Dirs to each users bin/bash and other stuff I do not understand.
+	cd -
+	/
+	pwd
+	/
+
+For the following questions, answer the question and also list the command(s) you used to get the answers. (1 point each)
+
+4.	Continue to explore the filesystem tree using cd, ls, pwd and cat. Look in /bin, /usr/bin, /sbin, /tmp and /boot. What do you see?
+	I have seen things that I should not touch. I believe /bin is only for the system to use while /usr/bin has programs we normal users get to use system wide. /tmp has very weird files with long names and some logs. Boot has a grub folder, which means I should not touch it and it is probably on a boot partition used to boot the system.
+5.	Explore /dev. Can you identify what devices are available? Which are character-oriented and which are block-oriented? Can you identify your tty (terminal) device (typing who am i might help); who is the owner of your tty (use ls -l)? )? (You may have to cd to the pts directory under /dev to see this.)
+	These files must be our ttys that we are logged into. The tty is owned by a group called tty. I am tty9 according to who. These are device files which are handling all of out input and output. I do not want to touch this directory ever.
+6.	Explore /proc. Display the contents of the files interrupts, devices, cpuinfo, meminfo and uptime using cat. Can you see why we say /proc is a pseudo-filesystem which allows access to kernel data structures?
+	This is very low level operating systems tier. I know that interrupts are very important event programing related that tell your computer what the hardware is doing. What is more important, I guess, is that we have access to view all of this inforamtion, which may be useful for creating low level programs.
+7.	Change to the home directory of another user directly, using cd ~username.
+	I'm in Kaleb's home.
+8.	Change back into your home directory.
+	cd ~
+9.	Make subdirectories called work and play.
+	mkdir work mkdir play
+10.	Delete the subdirectory called work.
+	rmdir work
+11.	Copy the file /etc/passwd into your home directory.
+	cp /etc/passwd passwd
+12.	Move it into the subdirectory play.
+	mv passwd play/
+13.	What is the difference between listing the contents of directory play with ls -l and ls -L?
+	Big L does nothing it seems. ls -l gives us the details.
+14.	Create a file called “hello.txt” that contains the word “hello”. Do this with the command echo hello  > hello.txt.
+	I used vim.
+15.	Copy hello.txt to terminal. What happens? Use who am i to find out your terminal number. Copy hello.txt to /dev/pts/<your terminal number>. What happens?
+	It printed hello in my terminal. The file is me.
+16.	How would you create and then delete a file that begins with the symbol -? Try it.
+	echo hello > "-helloa.txt"
+17.	From your home directory, copy /etc/passwd and /etc/group into your home directory in one command given that you can only type /etc once. What command did you use?
+	cp /etc/{passwd,group}	
+18.	Delete the play directory and its contents with one command. Accept no complaints or queries. What command did you use?
+	rm -rf play/
+19.	Change into a directory that does not belong to you and try to delete all the files (avoid /proc or /dev, just in case!)
+	rm: cannot remove 'x': Permission denied spam
+20.	Experiment with the options on the ls command. What do the d, i, R and F options do?
+	d lists the directories but not contents.
+	i stands for inode, and prints the index of each file.
+	R stands for recursive. Lists subdirectories recursively.
+	F is --classify. Appends an indicator to the entries.
+
