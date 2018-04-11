@@ -1,8 +1,11 @@
+/// Name: Dalton Caron
+/// Version: 11 April, 2018
+/// Description: C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good. C is good.
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 
-#define BUFF_SIZE 255
+#define BUFF_SIZE 255 // Better pray no one enters an assignment with over 255 characters
 
 typedef struct assignment {
 	char *name;
@@ -10,20 +13,26 @@ typedef struct assignment {
 	int day_due;
 	int hours;
 	struct assignment *next;
-} assignment_t;
+} assignment_t; // linked structure to also represent the assignment, aliased to assignment_t for style
 
+/// A wrapper function, so we do not hang out in the main method
 void beginLoop();
 
+/// Creates an assignment and adds it to the linked list, prompts user for inputs
 void createAssignment();
 
+/// Prompts the user for an assignment name and will delete assignments with the given name
 void deleteAssignment();
 
+/// Prints all of the assignments present in the linked list
 void printAssignments();
 
+/// Shorthand function to free a single assignment
 void freeAssignment(assignment_t *assignment);
 
-assignment_t *list;
+assignment_t *list; // the head of the linked list
 
+/// No arguments, just the call to beginLoop
 int main(int argc, char* argv[])
 {
 	beginLoop();	
@@ -73,7 +82,7 @@ void createAssignment()
 	new_doc->name = (char *)malloc(sizeof(char) * BUFF_SIZE);
 	printf("What is the name of this assignment? ");
 
-	if(scanf(" %[^\n]", new_doc->name) < 1)
+	while(scanf(" %[^\n]", new_doc->name) < 1)
 	{
 		printf("Please provide a valid input string\n");
 	}
@@ -84,6 +93,7 @@ void createAssignment()
 	{
 		printf("Please enter a valid non-negative integer ");	
 	}
+
 	printf("\tWhat day is it due? ");
 	while(scanf("%i", &(new_doc->day_due)) != 1)
 	{
