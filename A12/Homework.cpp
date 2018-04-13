@@ -4,14 +4,15 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <cstdint>
 
 #define BUFF_SIZE 255 // Better pray no one enters an assignment with over 255 characters
 
 typedef struct assignment {
 	char *name;
-	int month_due;
-	int day_due;
-	int hours;
+	int16_t month_due;
+	int16_t day_due;
+	int16_t hours;
 	struct assignment *next;
 } assignment_t; // linked structure to also represent the assignment, aliased to assignment_t for style
 
@@ -40,7 +41,7 @@ int main(int argc, char* argv[])
 
 void beginLoop()
 {
-	int input;
+	int16_t input;
 	do
 	{
 		printf("Enter the number for your choice:\n");
@@ -147,7 +148,7 @@ void deleteAssignment()
 {
 	printf("What is the name of the assignment you wish to delete ");
 	char *input_string = (char *)malloc(sizeof(char) * BUFF_SIZE);
-	if(scanf("%s", input_string) != 1)
+	if(scanf(" %[^\n]", input_string) != 1)
 	{
 		printf("The input string was invlaid\n");
 		return;
