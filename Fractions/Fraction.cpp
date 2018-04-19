@@ -2,26 +2,43 @@
 #include <cassert>
 #include <cmath>
 
+/// This class represents a fraction, it can do fraction things.
 class Fraction {
 public:
+	/// Constructs a fraction.
+	/// param! x The numerator
+	/// param! y The denominator
 	Fraction(int x, int y);
+	/// Constructs a fraction with a numerator and denominator of one.
 	Fraction();
+	/// Hard copy implementation of the assignment operator.
 	Fraction operator=(Fraction f);
+	/// Value checking implementation of the equality operator.
 	bool operator==(Fraction f);
+	/// Prints out the fraction.
 	void print() const;
+	/// Reduces a fraction to the lowest terms.
 	Fraction reduce();
+	/// Flips the values of the numerator and denominator 
 	Fraction reciprocal();
+	/// Operator overloading for addition of fractions
 	Fraction operator+(Fraction f);
+	/// Operator overloading for subtraction of fractions
 	Fraction operator-(Fraction f);
+	/// Operator overloading for multiplication of fractions
 	Fraction operator*(Fraction f);
+	/// Operator overloading for division of fractions
 	Fraction operator/(Fraction f);
+	/// Gets the numerator of the fraction
 	int getX() const;
+	/// Gets the denominator of the fraction
 	int getY() const;
 private:
 	int gcd();
 	int _x, _y; // x is the numerator, y is the denominator
 };
 
+/// The main function is a test suite, testing and asserting various functions.
 int main(int argc, char *argv[])
 {
 	// operator = test
@@ -50,7 +67,10 @@ int main(int argc, char *argv[])
 	Fraction j = (h + i);
 	assert(j.getX() == 5 && j.getY() == 1);
 	// operator -
-	
+	Fraction k(2, 5);
+	Fraction kk(2, 4);
+	Fraction kuk = (k - kk);
+	assert(kuk.getX() == -2 && kuk.getY() == 1);	
 	// operator *
 	Fraction l(10, 5);
 	Fraction m(2, 4);
@@ -61,6 +81,7 @@ int main(int argc, char *argv[])
 	Fraction p(2, 1);
 	Fraction q = ( o / p);
 	assert(q.getX() == 4 && q.getY() == 1);	
+	printf("All tests have passed. If you do not know what this means, please inspect the main function.\n");
 	return 0;
 }
 
@@ -116,7 +137,11 @@ Fraction Fraction::operator+(Fraction f)
 
 Fraction Fraction::operator-(Fraction f)
 {
-	return Fraction(_x - f.getX(), _y - f.getY());	
+	Fraction common_mult(std::abs(_y) * std::abs(f.getY()), 1);
+	Fraction t1 = *this, t2 = f;
+	t1 = (t1 * common_mult).reduce();
+	t2 = (t2 * common_mult).reduce();
+	return Fraction(t1.getX() - t2.getX(), t1.getY());	
 }
 
 Fraction Fraction::operator*(Fraction f)
