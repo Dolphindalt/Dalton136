@@ -1,3 +1,6 @@
+/// Author: Dalton Caron
+/// Version: 4/18/2018
+/// Description: Yare yare daze. Fractions for days.
 #include <cstdio>
 #include <cassert>
 #include <cmath>
