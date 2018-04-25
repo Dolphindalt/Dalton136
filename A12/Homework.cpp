@@ -42,6 +42,7 @@ int main(int argc, char* argv[])
 void beginLoop()
 {
 	int16_t input;
+	int n = 1;
 	do
 	{
 		printf("Enter the number for your choice:\n");
@@ -51,7 +52,7 @@ void beginLoop()
 		printf("4. Quit\n");
 
 		scanf("%d", &input);
-
+	
 		switch(input)
 		{
 			case 1: 
@@ -63,10 +64,10 @@ void beginLoop()
 			case 3: 
 				printAssignments();
 				break;
-			case 4: return;
+			case 4: n = 0; break;
 			default: break;
 		}		
-	} while(true);
+	} while(n);
 
 	assignment_t *head = list;
 	while(head != NULL)
