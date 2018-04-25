@@ -4,13 +4,13 @@
 #ifndef HOMEWORK_HPP
 #define HOMEWORK_HPP
 
-#include <cstdint>
+#define BUFF_SIZE 255 // Better pray no one enters an assignment with over 255 characters
 
 typedef struct assignment {
 	char *name;
-	int16_t month_due;
-	int16_t day_due;
-	int16_t hours;
+	int month_due;
+	int day_due;
+	int hours;
 	struct assignment *next; // Better [ray no one enter an assignment with over 255 characters
 } assignment_t;
 
@@ -29,6 +29,17 @@ void printAssignments();
 /// Shorthand function to free a single assginment
 void freeAssignment(assignment_t *assignment);
 
+/// Inserts an assignment into the linked list
+void insert(assignment_t *new_doc);
+
+/// Reads assignments from a file, which is provided by the user
+int readText();
+
+/// Writes all assignments to a file provided by the user
+void writeText();
+
 assignment_t *list; // the head of the linked list
+
+char file_name[BUFF_SIZE];
 
 #endif

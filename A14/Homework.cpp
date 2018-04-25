@@ -7,8 +7,6 @@
 #include <cstdlib>
 #include <cstring>
 
-#define BUFF_SIZE 255 // Better pray no one enters an assignment with over 255 characters
-
 /// No arguments, just the call to beginLoop
 int main(int argc, char* argv[])
 {
@@ -17,7 +15,10 @@ int main(int argc, char* argv[])
 
 void beginLoop()
 {
-	int16_t input;
+	if(!readText())
+		return;
+
+	int input;
 	int n = 1;
 	do
 	{
@@ -44,6 +45,8 @@ void beginLoop()
 			default: break;
 		}		
 	} while(n);
+
+	writeText();
 
 	assignment_t *head = list;
 	while(head != NULL)
@@ -84,41 +87,7 @@ void createAssignment()
 		printf("Please enter a valid non-negative integer ");
 	}	
 
-	if(list == NULL)
-	{
-		list = new_doc;	
-	}
-	else
-	{
-		assignment_t *itr = list;
-
-		if(itr->month_due > new_doc->month_due || (itr->month_due > new_doc->month_due && itr->day_due > new_doc->day_due))
-		{
-			new_doc->next = itr;
-			list = new_doc;
-			return;		
-		}
-
-		while(itr->next != NULL)
-		{
-			if(itr->month_due < new_doc->month_due)
-			{
-				assignment_t *after = itr->next;
-				itr->next = new_doc;
-				new_doc->next = after;
-				return;
-			}
-			if(itr->month_due == new_doc->month_due && itr->day_due < new_doc->day_due)
-			{
-				assignment_t *after = itr->next;
-				itr->next = new_doc;
-				new_doc->next = after;
-				return;	
-			}
-			itr = itr->next;
-		}
-		itr->next = new_doc;
-	}
+	insert(new_doc);
 }
 
 void deleteAssignment()
@@ -162,14 +131,14 @@ void printAssignments()
 	assignment_t *head = list;
 	while(head != NULL)
 	{
-		printf("Due: %d/%d\t%s\t", head->day_due, head->month_due, head->name);
+		printf("Due: %i/%i\t%s\t", head->day_due, head->month_due, head->name);
 		if(head->hours > 1)
 		{
-			printf("%d hours\n", head->hours);
+			printf("%i hours\n", head->hours);
 		}				
 		else
 		{
-			printf("%d hour\n", head->hours);
+			printf("%i hour\n", head->hours);
 		}
 		head = head->next;
 	}	
@@ -179,4 +148,88 @@ void freeAssignment(assignment_t *assignment)
 {
 	free(assignment->name);
 	free(assignment);
+}
+
+void insert(assignment_t *new_doc)
+{
+	if(list == NULL)
+	{
+		list = new_doc;	
+	}
+	else
+	{
+		assignment_t *itr = list;
+
+		if(itr->month_due > new_doc->month_due || (itr->month_due > new_doc->month_due && itr->day_due > new_doc->day_due))
+		{
+			new_doc->next = itr;
+			list = new_doc;
+			return;		
+		}
+
+		while(itr->next != NULL)
+		{
+			if(itr->month_due < new_doc->month_due)
+			{
+				assignment_t *after = itr->next;
+				itr->next = new_doc;
+				new_doc->next = after;
+				return;
+			}
+			if(itr->month_due == new_doc->month_due && itr->day_due < new_doc->day_due)
+			{
+				assignment_t *after = itr->next;
+				itr->next = new_doc;
+				new_doc->next = after;
+				return;	
+			}
+			itr = itr->next;
+		}
+		itr->next = new_doc;
+	}
+}
+
+int readText()
+{
+	printf("Please specify a file name: ");
+	scanf("%s", file_name);
+
+	FILE *fptr = NULL;
+	fptr = fopen(file_name, "a+");
+
+	if(fptr == NULL)
+	{
+		printf("You must provide a valid file!\n");
+		return 0;
+	}
+
+	char name[BUFF_SIZE];
+	int month_due, day_due, hours;
+
+	while(fscanf(fptr, "%i %i %i %[^\n]", &month_due, &day_due, &hours, name) == 4)
+	{
+		assignment_t *new_asm = (assignment_t *)malloc(sizeof(assignment_t));
+		new_asm->name = (char *)malloc(sizeof(char) * BUFF_SIZE);
+		strcpy(new_asm->name, name);
+		new_asm->month_due = month_due;
+		new_asm->day_due = day_due;
+		new_asm->hours = hours;
+		insert(new_asm);
+	}
+
+	fclose(fptr);
+	return 1;
+}
+
+void writeText()
+{
+	FILE *fptr = NULL;
+	fptr = fopen(file_name, "w");
+
+	assignment_t *current = list;
+	while(current != NULL)
+	{
+		fprintf(fptr, "%i %i %i %s\n", current->month_due, current->day_due, current->hours, current->name);
+		current = current->next;
+	}
 }
