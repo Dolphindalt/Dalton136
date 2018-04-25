@@ -1,5 +1,6 @@
 import heapq
 import math
+import collections
 
 class Junction:
     def __init__(self, index):
@@ -79,12 +80,16 @@ for c in clients:
 table.sort(key=lambda r: max(t[1] for t in r))
 trim_table.sort(key=lambda p: p[1])
 
-print(*table,sep='\n')
-print(*trim_table,sep='\n')
+#print(*trim_table,sep='\n')
 
-def contains_path(lpath, gpath):
-    for i in range(len(lpath)):
-        if lpath[i] == gpath[i]:
-            continue
-        return False
-    return True
+def compare(path):
+    pass
+        
+
+for i in range(len(trim_table)-1,0,-1):
+    path = trim_table[i][2]
+    if compare(path):
+        trim_table.pop(i)
+
+print(trim_table)
+print(len(trim_table))
