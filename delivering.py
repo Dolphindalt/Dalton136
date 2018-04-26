@@ -1,6 +1,9 @@
 import heapq
 import math
 import collections
+import sys
+
+sys.setrecursionlimit(5000)
 
 class Junction:
     def __init__(self, index):
@@ -11,8 +14,6 @@ class Junction:
         self.is_client = False
         self.prev = []
         self.edges = []
-    # def __eq__(self, other):
-        # return self.cost == other.cost
     def __lt__(self, other):
         return self.cost < other.cost
     def __repr__(self):
@@ -74,7 +75,7 @@ trim_table = []
 
 table = []
 for c in clients:
-    table.append([(client_count(path), c.cost, path) for path in find_path(c)])
+    table.append([[client_count(path), c.cost, path] for path in find_path(c)])
     for path in table[-1]:
         trim_table.append(path)
 table.sort(key=lambda r: max(t[1] for t in r))
@@ -83,13 +84,55 @@ trim_table.sort(key=lambda p: p[1])
 #print(*trim_table,sep='\n')
 
 def compare(path):
-    pass
-        
+    pl = len(path)
+    for row in trim_table:
+        cmp_path = row[2]
+        if pl > len(cmp_path):
+            continue
+        if set(path) == set(cmp_path):
+            continue
+        a = cmp_path[0:pl]
+        if set(a) == set(path):
+            return True
+    return False
 
-for i in range(len(trim_table)-1,0,-1):
+for i in range(len(trim_table)-1,-1,-1):
     path = trim_table[i][2]
     if compare(path):
         trim_table.pop(i)
 
-print(trim_table)
-print(len(trim_table))
+for row in trim_table:
+    path = row[2]
+    row[2] = [c for c in path if c in clients]
+
+for path in trim_table:
+    for other in trim_table:
+        if path is other:
+            continue
+        if path[1] == other[1] and set(path[2]) == set(other[2]):
+            trim_table.remove(path)
+
+reverse_table = reversed(trim_table)
+nt = []
+for path in reverse_table:
+    dik = {}
+    pl = len(path[2])
+    for j in range(len(trim_table)-1,-1,-1):
+        all_guys = trim_table[j]
+        if all_guys is path:
+            continue
+        for n in range(len(all_guys[2])):
+            for i in range(pl):
+                if path[2][i] == all_guys[2][n]:
+                    dik[path[2][i]] = True
+    remove = False
+    print(dik)
+    for i in range(pl):
+        if not dik.get(path[2][i]) or True:
+            remove = True
+            break
+    if not remove:
+        nt.append(path)
+
+print(nt)
+print(len(nt))
