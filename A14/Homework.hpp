@@ -33,6 +33,7 @@ void freeAssignment(assignment_t *assignment);
 void insert(assignment_t *new_doc);
 
 /// Reads assignments from a file, which is provided by the user
+/// Regarding file creation, if the file entered does not exist, it will be created instead
 int readText();
 
 /// Writes all assignments to a file provided by the user
