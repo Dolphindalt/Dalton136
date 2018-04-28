@@ -1,6 +1,5 @@
-import heapq
+from heapq import heapify, heappop,heappush
 import math
-import collections
 import sys
 
 sys.setrecursionlimit(5000)
@@ -32,9 +31,9 @@ for i in range(m):
 junctions[0].cost = 0
 junctions[0].prev = None
 
-queue = list(junctions)
-
-heapq.heapify(queue)
+queue = []
+for j in junctions:
+    heappush(queue, j)
 
 # pathfinder
 def find_path(j):
@@ -49,7 +48,7 @@ def find_path(j):
 
 # deekstra
 while queue:
-    j = heapq.heappop(queue)
+    j = heappop(queue)
     j.visited = True
     for n, w in j.edges:
         if n.visited:
@@ -66,7 +65,7 @@ while queue:
                 n.prev = [j]
             elif next_client_count == n.client_count:
                 n.prev.append(j)
-    heapq.heapify(queue)
+    heapify(queue)
 
 def client_count(path):
     return sum(c in path for c in clients)
@@ -78,10 +77,8 @@ for c in clients:
     table.append([[client_count(path), c.cost, path] for path in find_path(c)])
     for path in table[-1]:
         trim_table.append(path)
-table.sort(key=lambda r: max(t[1] for t in r))
-trim_table.sort(key=lambda p: p[1])
-
-#print(*trim_table,sep='\n')
+#table.sort(key=lambda r: max(t[1] for t in r))
+#trim_table.sort(key=lambda p: p[1])
 
 def compare(path):
     pl = len(path)
@@ -92,7 +89,7 @@ def compare(path):
         if set(path) == set(cmp_path):
             continue
         a = cmp_path[0:pl]
-        if set(a) == set(path):
+        if a == path:
             return True
     return False
 
