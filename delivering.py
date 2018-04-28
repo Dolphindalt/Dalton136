@@ -17,7 +17,7 @@ class Junction:
     def __lt__(self, other):
         return self.cost < other.cost
     def __repr__(self):
-        return f'{self.index}'
+        return '{}'.format(self.index)
 
 n, m, c = map(int, input().split())
 junctions = [ Junction(i) for i in range(n)]
@@ -111,28 +111,27 @@ for path in trim_table:
             continue
         if path[1] == other[1] and set(path[2]) == set(other[2]):
             trim_table.remove(path)
-
-reverse_table = reversed(trim_table)
-nt = []
-for path in reverse_table:
+    
+for i in range(len(trim_table)-1, -1, -1):
     dik = {}
-    pl = len(path[2])
-    for j in range(len(trim_table)-1,-1,-1):
-        all_guys = trim_table[j]
-        if all_guys is path:
+    tup = trim_table[i]
+    path = tup[2]
+    for c in path:
+        dik[c] = False
+    for compare in trim_table:
+        if compare is tup:
             continue
-        for n in range(len(all_guys[2])):
-            for i in range(pl):
-                if path[2][i] == all_guys[2][n]:
-                    dik[path[2][i]] = True
-    remove = False
-    print(dik)
-    for i in range(pl):
-        if not dik.get(path[2][i]) or True:
-            remove = True
+        compare_path = compare[2]
+        sl = min(len(compare_path), len(path))
+        for j in range(sl):
+            if path[j] == compare_path[j]:
+                dik[path[j]] = True
+    remove = True
+    for c in path:
+        if dik[c] is False:
+            remove = False
             break
-    if not remove:
-        nt.append(path)
+    if remove:
+        trim_table.remove(tup)
 
-print(nt)
-print(len(nt))
+print(len(trim_table))
