@@ -1,9 +1,9 @@
 # A model make file
 CC=g++
-CFLAGS=-g -Wall
+CFLAGS=-g -Wall -std=c++17
 SOURCES=$(wildcard *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXE=hello
+EXE=delivering
 
 make: $(SOURCES) $(EXE)
 

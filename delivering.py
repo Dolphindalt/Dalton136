@@ -108,7 +108,7 @@ for path in trim_table:
             continue
         if path[1] == other[1] and set(path[2]) == set(other[2]):
             trim_table.remove(path)
-    
+
 for i in range(len(trim_table)-1, -1, -1):
     dik = {}
     tup = trim_table[i]
