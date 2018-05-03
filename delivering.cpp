@@ -35,6 +35,33 @@ void deekstra(int target, const vector< vector<Edge> > &edges, vector<weight> &d
   }
 }
 
+int depth_first_search(int i, vector<int> &matched, const vector< vector<int> > &bip, vector<int> &seen)
+{
+  if(seen[i]) return 0;
+  seen[i] = 1;
+
+  for(int j = 0; j < bip[i].size(); j++)
+  {
+    int jj = bip[i][j];
+    if(matched[jj+bip.size()] == -1 || depth_first_search(matched[jj+bip.size()], matched, bip, seen))
+    {
+      matched[jj+bip.size()] = i;
+      matched[i] = jj+bip.size();
+      return 1;
+    }
+  }
+  return 0;
+}
+
+int seen(const vector< vector<int> > &bip, vector<int> &matched)
+{
+    vector<int> seen(bip.size(), 0);
+    for(int i = 0; i < bip.size(); i++)
+      if(matched[i] == -1 && depth_first_search(i, matched, bip, seen) == 1)
+        return 1;
+    return 0;
+}
+
 int main(int argc, char *argv[])
 {
   int n, m, c, i;
@@ -67,11 +94,13 @@ int main(int argc, char *argv[])
     }
   }
 
-  for(i = 0; i < bip.size(); i++)
+  vector<int> matched(bip.size() * 2, -1);
+  int matches = 0;
+  for(;;matches++)
   {
-    printf("Key: %d\n", key_vertices[i]);
-    for(int j = 0; j < bip[i].size(); j++)
-      printf(" %d", key_vertices[bip[i][j]]);
-    printf("\n");
+    if(seen(bip, matched) ^ 1)
+      break;
   }
+
+  printf("%d\n", c-matches);
 }
